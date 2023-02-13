@@ -3,4 +3,4 @@
 SELECT customer_last_name, order_date, shipped_date -- select our three columns
 FROM customers JOIN orders -- join data from both tables
 ON customers.customer_id = orders.customer_id -- only join when ids match
-ORDER BY customer_last_name asc; -- sort ascending by last name 
+ORDER BY customer_last_name asc; -- sort ascending poggerby last name 
