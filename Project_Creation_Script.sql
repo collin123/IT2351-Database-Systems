@@ -19,7 +19,10 @@ CREATE TABLE products(
     product_id INT PRIMARY KEY AUTO_INCREMENT,
     product_name VARCHAR(50) NOT NULL UNIQUE,
     cost_per_unit DECIMAL(10, 2) NOT NULL,
-    sale_price_per_unit DECIMAL(10, 2) NOT NULL
+	category ENUM('Ice Cream', 'Topping') NOT NULL,
+    sale_price_per_unit DECIMAL(10, 2) NOT NULL,
+	CONSTRAINT products_chk_category 
+    CHECK (category IN ('Ice Cream', 'Topping'))
 ); 
 -- sales table which will only include a order_id, customer and date_sold which can later be used to identify what was sold
 CREATE TABLE sales(
@@ -33,7 +36,7 @@ CREATE TABLE sales(
 CREATE TABLE order_items(
     order_id INT NOT NULL,
     product_id INT NOT NULL,
-    quantity INT NOT NULL,
+    quantity_ordered INT NOT NULL,
     PRIMARY KEY (order_id, product_id),
     CONSTRAINT order_items_fk_sales
     FOREIGN KEY(order_id) REFERENCES sales(order_id),
